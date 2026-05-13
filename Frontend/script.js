@@ -215,7 +215,7 @@ window.addEventListener('load', () => {
     document.body.style.transition = 'opacity 0.6s ease';
     setTimeout(() => { document.body.style.opacity = '1'; }, 50);
 });
-fetch('http://localhost:5000/api/projects')
+fetch('https://portfolio-iz6u.onrender.com/api/projects')
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
