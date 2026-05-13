@@ -117,9 +117,10 @@ app.use((err, req, res, next) => {
 // ── Start Server ───────────────────────────────────────
 const startServer = async () => {
   try {
-    if (!process.env.MONGO_URI) {
-      throw new Error("MONGO_URI is missing in environment variables");
-    }
+    console.log("Starting server...");
+
+    console.log("Checking MONGO_URI...");
+    console.log(process.env.MONGO_URI ? "MONGO_URI Found" : "MONGO_URI Missing");
 
     await mongoose.connect(process.env.MONGO_URI);
 
@@ -130,11 +131,11 @@ const startServer = async () => {
     });
 
   } catch (error) {
-    console.error("❌ Failed to start server:", error.message);
+    console.error("❌ FULL ERROR:");
+    console.error(error);
+
     process.exit(1);
   }
 };
 
 startServer();
-
-module.exports = app;
