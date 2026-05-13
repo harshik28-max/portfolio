@@ -48,10 +48,10 @@ const limiter = rateLimit({
 
 app.use('/api', limiter);
 
-app.use('/api/projects', projectsRoutes);
+app.use('/api/projects', projectRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/skills', skillsRoutes);
+app.use('/api/skills', skillRoutes);
 app.use('/api/stats', statsRoutes);
 
 app.get('/', (req, res) => {
