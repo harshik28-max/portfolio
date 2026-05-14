@@ -1,7 +1,7 @@
 /* =====================================================
-   PORTFOLIO — style.css
-   Aesthetic: Dark brutalist editorial with neon accent
-   ===================================================== */
+    PORTFOLIO — style.css
+    Aesthetic: Dark brutalist editorial with neon accent
+    ===================================================== */
 
 *,
 *::before,
@@ -50,7 +50,7 @@ body {
     inset: 0;
     z-index: 1000;
     pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOc[...]
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' fill='%23ffffff' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
     background-size: 200px;
     opacity: 0.4;
 }
@@ -1001,33 +1001,48 @@ nav.scrolled {
     background: var(--bg3);
     border: 1px solid var(--border);
     color: var(--text);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    padding: 0.85rem 1rem;
-    transition: border-color var(--transition), box-shadow var(--transition);
-    outline: none;
-    resize: vertical;
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color var(--transition);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
+    outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 2px rgba(232, 255, 71, 0.1);
 }
 
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
 .form-success {
-    color: var(--accent);
+    display: none;
+    padding: 1rem;
+    background: rgba(71, 255, 200, 0.1);
+    border: 1px solid var(--accent2);
+    color: var(--accent2);
     font-size: 0.85rem;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(10px);
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius);
+    animation: slideIn 0.3s ease;
 }
 
 .form-success.show {
-    opacity: 1;
-    transform: translateY(0);
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
@@ -1035,7 +1050,7 @@ nav.scrolled {
 
 .footer {
     background: var(--bg2);
-    padding: 3rem;
+    padding: 3rem 4rem;
     text-align: center;
     border-top: 1px solid var(--border);
 }
@@ -1047,120 +1062,120 @@ nav.scrolled {
 
 .footer-logo {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: var(--accent);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .footer p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    line-height: 1.8;
+    margin: 0.5rem 0;
 }
 
 .footer-note {
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
+    font-size: 0.75rem !important;
+    margin-top: 1rem;
 }
 
 
-/* ---- ANIMATIONS ---- */
+/* ---- REVEAL ANIMATION ---- */
 
 .reveal {
     opacity: 0;
-    animation: revealUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-@keyframes revealUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
 /* ---- RESPONSIVE ---- */
 
 @media (max-width: 1024px) {
+    nav {
+        padding: 1rem 2rem;
+    }
+
+    nav.scrolled {
+        padding: 0.75rem 2rem;
+    }
+
+    .section {
+        padding: 6rem 2rem;
+    }
+
     .about-grid,
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
 
-    .hero-visual {
-        display: none;
+    .hero {
+        padding: 0 2rem;
     }
 
-    .hero {
-        min-height: auto;
-        padding: 4rem;
+    .hero-visual {
+        min-height: 300px;
     }
 }
 
 @media (max-width: 768px) {
-    nav {
-        padding: 1rem 2rem;
-    }
-
-    nav.scrolled {
-        padding: 0.8rem 2rem;
+    .nav-links {
+        display: none;
     }
 
     .hamburger {
         display: flex;
     }
 
-    .nav-links {
-        display: none;
+    .section {
+        padding: 4rem 1.5rem;
     }
 
-    .section {
-        padding: 4rem 2rem;
+    .hero-title {
+        font-size: clamp(2rem, 6vw, 4rem);
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 4vw, 3rem);
     }
 
     .skills-grid {
         grid-template-columns: 1fr;
     }
 
-    .about-stats {
-        gap: 2rem;
-    }
-
     .projects-grid {
         grid-template-columns: 1fr;
     }
 
-    .hero-title {
-        font-size: clamp(2rem, 5vw, 3.5rem);
+    .contact-form {
+        gap: 1rem;
     }
 
-    .section-title {
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-    }
-
-    .scroll-hint {
-        display: none;
+    .form-group input,
+    .form-group textarea {
+        padding: 0.6rem;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
+    nav {
+        padding: 1rem;
+    }
+
     .section {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1rem;
     }
 
     .hero {
-        padding: 1.5rem;
-        min-height: 100vh;
-    }
-
-    .hero-title {
-        font-size: 2rem;
+        min-height: auto;
+        padding: 6rem 1rem 4rem;
     }
 
     .hero-cta {
@@ -1170,19 +1185,25 @@ nav.scrolled {
     .btn-primary,
     .btn-ghost {
         width: 100%;
+        justify-content: center;
     }
 
     .about-stats {
-        flex-wrap: wrap;
+        gap: 1.5rem;
     }
 
-    .image-frame {
-        width: 100%;
-        max-width: 300px;
+    .scroll-hint {
+        display: none;
     }
 
-    #submitBtn {
-        width: 100%;
-        align-self: auto;
+    .hero-visual {
+        min-height: 250px;
+        position: relative;
+        top: auto;
+    }
+
+    .floating-tag {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
     }
 }
