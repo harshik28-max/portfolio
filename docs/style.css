@@ -648,6 +648,13 @@ nav.scrolled {
     align-items: flex-end;
     justify-content: center;
 }
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
 
 .image-placeholder svg {
     width: 85%;
